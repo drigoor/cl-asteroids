@@ -4,7 +4,8 @@
   :license "MIT License"
   :version "0.0.1"
   :serial t
-  :depends-on (#:cl-raylib
-               #:cl-game-spell)
+  :depends-on (#:cl-game-spell)
   :components ((:file "package")
+               (:file "shape")
+               (:file "game")
                (:file "main")))

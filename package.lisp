@@ -1,8 +1,9 @@
 (in-package #:cl)
 
 
-(defpackage :asteroids
+(defpackage #:cl-asteroids
+  (:nicknames #:asteroids)
   (:use #:cl
-        #:raylib
-        #:game-spell)
+        #:cl-raylib
+        #:cl-game-spell)
   (:export #:run))
