@@ -29,8 +29,8 @@
                :points (generate-player-points)))
 
 
-(defmethod act ((player player))
-  (with-slots (orientation orientation-speed) player
+(defmethod act ((this player))
+  (with-slots (orientation orientation-speed) this
     (when (or (is-key-down +key-a+)
               (is-key-down +key-left+))
       (decf orientation orientation-speed))
@@ -90,7 +90,7 @@
                  :points (generate-asteroid-points scale)))
 
 
-(defmethod act ((asteroid asteroid))
+(defmethod act ((this asteroid))
   )
 
 

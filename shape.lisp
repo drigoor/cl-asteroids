@@ -14,8 +14,8 @@
 (define-constructor shape)
 
 
-(defmethod draw ((shape shape))
-  (with-slots (location orientation thickness color points) shape
+(defmethod draw ((this shape))
+  (with-slots (location orientation thickness color points) this
     (let ((start nil))
       (dolist (pt points)
         (let ((end (v2-rotate pt orientation)))
