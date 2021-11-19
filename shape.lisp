@@ -4,6 +4,8 @@
 (define-class shape ()
   location
   velocity ;; speed -> x, direction -> y
+  aceleration
+  deceleration
   orientation
   orientation-speed
   thickness
