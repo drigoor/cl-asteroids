@@ -31,6 +31,46 @@
          20   0))
 
 
+(define-game-object particle)
+
+
+(defun spawn-particle (location velocity max-life-time max-size deceleration)
+  (let* ((half-max-life-time (/ max-life-time 2))
+         (life-timer (+ half-max-life-time (* (random-between 0 1) half-max-life-time)))
+         (size (random-between 1.0 max-size)))
+    (make-particle :location location
+                   :velocity velocity ;; speed -> x, direction -> y
+                   :aceleration nil ;; not in use
+                   :deceleration deceleration
+                   :orientation nil ;; not in use
+                   :orientation-speed nil ;; not in use
+                   :thickness size
+                   :color +lightgray+
+                   :points nil
+                   :life-timer life-timer)))
+
+
+(defmethod act ((this particle))
+  (with-slots (life-timer) this
+    (cond ((zerop life-timer)
+           (frag this))
+          (t
+           (decf life-timer)
+           (with-slots (location velocity deceleration) this
+             (let ((speed (v2-x velocity))
+                   (direction (v2-y velocity)))
+               (decf speed deceleration)
+               (when (< speed 0.0)
+                 (setf speed 0.0))
+               (setf velocity (v2 speed direction))
+               (setf location (v2-wrap (move-location-by-velocity this)))))))))
+
+
+(defmethod draw ((this particle))
+  (with-slots (location thickness color) this
+    (draw-circle-v location thickness color)))
+
+
 (define-game-object player)
 
 
@@ -59,15 +99,25 @@
                           (get-vector-components v2-2))))
 
 
+
 (defun player-thrust (player)
-  (with-slots (velocity orientation aceleration) player
+  (with-slots (location velocity orientation aceleration) player
     (let ((aceleration-vector (v2 aceleration orientation)))
-      (setf velocity (add-vectors velocity aceleration-vector)))))
+      (setf velocity (add-vectors velocity aceleration-vector)))
+
+    ;; TODO
+    (let ((particle-location (v2-add location (v2-rotate (v2 -15 0) orientation))))
+      (dotimes (i 5)
+        (let* ((particle-orientation (keep-angle-in-range (- (+ orientation +pi+ (* (random 1.0) (/ +pi+ 6))) (/ +pi+ 12))))
+               (particle-velocity (v2 (* (random 1.0) 2) particle-orientation)))
+          (spawn-particle particle-location particle-velocity 30 1 0.01)
+          )))
+    ))
 
 
 (defmethod act ((this player))
   (when (or (is-key-down +key-w+)
-              (is-key-down +key-up+))
+            (is-key-down +key-up+))
     (player-thrust this))
   (with-slots (orientation orientation-speed) this
     (when (or (is-key-down +key-a+)
@@ -78,7 +128,7 @@
               (is-key-down +key-right+))
       (incf orientation orientation-speed)
       (setf orientation (keep-angle-in-range orientation))))
-  ;; update movement (equal to asteroids...) or better, generic to shape
+  ;; update movement (equal to asteroids...) or better, generic to shape TODO                   
   (with-slots (location velocity deceleration) this
     (let ((speed (v2-x velocity))
           (direction (v2-y velocity)))

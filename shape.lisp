@@ -10,7 +10,8 @@
   orientation-speed
   thickness
   color
-  points)
+  points
+  life-timer)
 
 
 (define-constructor shape)
