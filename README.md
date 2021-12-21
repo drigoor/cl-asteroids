@@ -40,7 +40,7 @@ raylib.dll
 libffi-7.dll	<- this one from msys2
 ```
 
-* ensure that the project is available in the quicklisp local-projects (use a dos cmd window):
+* ensure that the project is available in the quicklisp local-projects (use a DOS cmd window):
 
 ```bat
 mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-asteroids
