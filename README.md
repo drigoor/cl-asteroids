@@ -1,12 +1,6 @@
 # cl-asteroids
 Common Lisp Asteroids Clone
 
-## Installation and loading
-
-```bat
-mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-asteroids
-```
-
 ## What is this?
 * the idea in this repo was to create a simple asteroids game clone (based on an example from the tic-80 fantasy computer community)
 * this was based on my own [cl-game-spell](https://github.com/drigoor/cl-game-spell)
@@ -19,37 +13,56 @@ mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-aste
 ![screenrec000.gif](screenrec000.gif)
 
 
-### Instructions (based in windows)
+## Installation instructions and loading (in Windows)
 
-* run in mingw64 shell
+To load the game properly, one should install (msys2)[https://www.msys2.org] and run the following commands in the mingw64 shell
 
+#### for running raylib
 
-FOR RUNNING RAYLIB
-------------------
+```bash
+> install msys2
+```
 
-* copy the following .dll to sbcl folder
-  - raylib.dll
-  - libffi-7.dll	<- this one from msys2
-
-
-FOR RUNNING SDL2
-----------------
-
-* install msys2
-
+```bash
 pacman -Syu
 pacman -Su
 pacman -S git
 pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 pacman -S mingw-w64-x86_64-libffi
 pacman -S mingw-w64-x86_64-emacs
+```
+
+* copy the following .dll to sbcl folder
+  - raylib.dll
+  - libffi-7.dll	<- this one from msys2
+
+* ensure that the project is available in the quicklisp local-projects:
+
+```bat
+mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-asteroids
+```
+
+* load emacs (with [slime](https://github.com/slime/slime) or [sly](https://github.com/joaotavora/sly) + [quicklisp](https://www.quicklisp.org/beta/)) and in the lisp repl do:
+
+```cl
+(ql:quickload :cl-asteroids)
+(asteroids:run)
+```
+
+---
+
+#### for running sdl2 (abandonware)
+
+```bash
 pacman -S mingw-w64-x86_64-SDL2
 pacman -S mingw-w64-x86_64-SDL2_ttf
 pacman -S mingw-w64-x86_64-SDL2_image
+```
 
-
---- others not installed ---
-mingw-w64-x86_64-SDL2_gfx
-mingw-w64-x86_64-SDL2_mixer
-mingw-w64-x86_64-SDL2_net
-mingw-w64-x86_64-smpeg2
+others not installed:
+```bash
+* mingw-w64-x86_64-SDL2_gfx
+* mingw-w64-x86_64-SDL2_mixer
+* mingw-w64-x86_64-SDL2_net
+* mingw-w64-x86_64-smpeg2
+```
