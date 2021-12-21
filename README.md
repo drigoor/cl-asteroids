@@ -45,7 +45,7 @@ libffi-7.dll	<- this one from msys2
 mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-asteroids
 ```
 
-* load emacs (with [slime](https://github.com/slime/slime) or [sly](https://github.com/joaotavora/sly) + [quicklisp](https://www.quicklisp.org/beta/)) and in the lisp repl do:
+* load emacs, from the __MinGW64__ shell, (with [slime](https://github.com/slime/slime) or [sly](https://github.com/joaotavora/sly) + [quicklisp](https://www.quicklisp.org/beta/)) and in the lisp repl do:
 
 ```cl
 (ql:quickload :cl-asteroids)
