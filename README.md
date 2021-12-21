@@ -12,8 +12,9 @@ Common Lisp Asteroids Clone
 
 ![screenrec000.gif](screenrec000.gif)
 
+---
 
-## Installation instructions and loading (in Windows with [raylib](https://www.raylib.com))
+## Installation instructions and loading (in Windows)
 
 * install [msys2](https://www.msys2.org)
 
