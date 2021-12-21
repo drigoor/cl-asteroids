@@ -13,15 +13,11 @@ Common Lisp Asteroids Clone
 ![screenrec000.gif](screenrec000.gif)
 
 
-## Installation instructions and loading (in Windows)
+## Installation instructions and loading (in Windows with [raylib](https://www.raylib.com))
 
-To load the game properly, one should install (msys2)[https://www.msys2.org] and run the following commands in the mingw64 shell
+* install [msys2](https://www.msys2.org)
 
-#### for running raylib
-
-```bash
-> install msys2
-```
+* open a mingw64 shell and do the following:
 
 ```bash
 pacman -Syu
@@ -32,9 +28,14 @@ pacman -S mingw-w64-x86_64-libffi
 pacman -S mingw-w64-x86_64-emacs
 ```
 
+* download [raylib](https://www.raylib.com)
+
 * copy the following .dll to sbcl folder
-  - raylib.dll
-  - libffi-7.dll	<- this one from msys2
+
+```text
+raylib.dll
+libffi-7.dll	<- this one from msys2
+```
 
 * ensure that the project is available in the quicklisp local-projects:
 
