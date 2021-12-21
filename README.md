@@ -17,7 +17,7 @@ Common Lisp Asteroids Clone
 
 * install [msys2](https://www.msys2.org)
 
-* open a mingw64 shell and do the following:
+* open a __MinGW64__ shell and do the following:
 
 ```bash
 pacman -Syu
@@ -28,6 +28,8 @@ pacman -S mingw-w64-x86_64-libffi
 pacman -S mingw-w64-x86_64-emacs
 ```
 
+* install [sbcl](http://www.sbcl.org)
+
 * download [raylib](https://www.raylib.com)
 
 * copy the following .dll to sbcl folder
@@ -37,7 +39,7 @@ raylib.dll
 libffi-7.dll	<- this one from msys2
 ```
 
-* ensure that the project is available in the quicklisp local-projects:
+* ensure that the project is available in the quicklisp local-projects (use a dos cmd window):
 
 ```bat
 mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-asteroids
