@@ -19,7 +19,7 @@ mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-aste
 ![screenrec000.gif](screenrec000.gif)
 
 
-### Instructions
+### Instructions (based in windows)
 
 * run in mingw64 shell
 
