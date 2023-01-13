@@ -12,13 +12,31 @@ Common Lisp Asteroids Clone
 
 ![screenrec000.gif](screenrec000.gif)
 
----
+# Installing and running (in *Windows*)
 
-## Installation instructions and loading (in Windows)
+## in *PowerShell*
+
+* install [sccop](https://scoop.sh)
+
+```text
+follow the instructions in the page (tip: install at c:\home\scoop)
+```
+
+* install [sbcl](http://www.sbcl.org)
+
+```powershell
+scoop install sbcl
+```
 
 * install [msys2](https://www.msys2.org)
 
-* open a __MinGW64__ shell and do the following:
+```powershell
+scoop install msys2
+```
+
+## in *MinGW64* shell
+
+* install tools
 
 ```bash
 pacman -Syu
@@ -29,44 +47,76 @@ pacman -S mingw-w64-x86_64-libffi
 pacman -S mingw-w64-x86_64-emacs
 ```
 
-* install [sbcl](http://www.sbcl.org)
-
-* download [raylib](https://www.raylib.com)
-
-* copy the following .dll to sbcl folder
+* libffi (copy and rename)
 
 ```text
-raylib.dll
-libffi-7.dll	<- this one from msys2
+copy C:\home\scoop\apps\msys2\current\mingw64\bin\libffi-8.dll -> C:\home\scoop\apps\sbcl\current\libffi.dll
 ```
 
-* ensure that the project is available in the quicklisp local-projects (use a DOS cmd window):
+* install [raylib](https://www.raylib.com)
+
+```bash
+pacman -S mingw-w64-x86_64-raylib
+```
+
+* install [raygui](https://github.com/raysan5/raygui) [^1][^2]
+
+```bash
+cd home\bin
+git clone https://github.com/raysan5/raygui.git
+cd raygui
+mv src/raygui.h src/raygui.c
+gcc -o src/raygui.dll src/raygui.c -shared -DRAYGUI_IMPLEMENTATION -DBUILD_LIBTYPE_SHARED -static-libgcc -lraylib -lopengl32 -lgdi32 -lwinmm -Wl,--out-implib,src/librayguidll.a [^1]
+cp C:\home\bin\raygui\src\raylib.dll -> C:\home\scoop\apps\sbcl\current\libraygui.dll
+```
+
+[^1]: in the command *gcc* it was required to added '*-lraylib*' so the linker work (not in the official documentation)
+
+[^2]: also, in the *raylib.c* file it was required to move the function *GetCodepointNext* before its use in the function *GuiTextBox*
+
+## etc
+
+* install [quicklisp](https://www.quicklisp.org/beta/)
+
+```text
+follow the instructions in the page
+```
+
+* ensure that the project is available in the *quicklisp local-projects* (use a *dos* *cmd* window):
 
 ```bat
-mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\cl-asteroids
+mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\lisp\cl-asteroids
 ```
 
-* load emacs, from the __MinGW64__ shell, (with [slime](https://github.com/slime/slime) or [sly](https://github.com/joaotavora/sly) + [quicklisp](https://www.quicklisp.org/beta/)) and in the lisp repl do:
+* install [claylib](https://github.com/defun-games/claylib)
+
+```text
+just git clone the claylib directly to c:\home\quicklisp\local-projects
+```
+
+* Running...[^end]
+
+Run emacs from *MinGW64* shell:
+
+```bash
+emacs &
+```
+
+In Emacs (with [sly](https://github.com/joaotavora/sly)[^slime] installed) do:
+
+```text
+M-x sly
+```
+
+Now in the repl do:
 
 ```cl
 (ql:quickload :cl-asteroids)
 (asteroids:run)
 ```
 
----
+[^slime] could also use [slime](https://github.com/slime/slime) instead of sly
 
-#### for running sdl2 (abandonware)
+[^end] in the end we can delete the raygui *c:\home\bin\raygui\src*
 
-```bash
-pacman -S mingw-w64-x86_64-SDL2
-pacman -S mingw-w64-x86_64-SDL2_ttf
-pacman -S mingw-w64-x86_64-SDL2_image
-```
-
-others not installed:
-```bash
-* mingw-w64-x86_64-SDL2_gfx
-* mingw-w64-x86_64-SDL2_mixer
-* mingw-w64-x86_64-SDL2_net
-* mingw-w64-x86_64-smpeg2
-```
+[^tests] to test, in the lisp repl we can do *(ql:quickload :claylib/examples)* and after *(claylib/examples/basic-window:main)*
