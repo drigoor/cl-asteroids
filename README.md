@@ -94,7 +94,7 @@ mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\lisp\cl
 just git clone the claylib directly to c:\home\quicklisp\local-projects
 ```
 
-* Running...[^end]
+* Running... [^3][^4]
 
 Run emacs from *MinGW64* shell:
 
@@ -102,7 +102,7 @@ Run emacs from *MinGW64* shell:
 emacs &
 ```
 
-In Emacs (with [sly](https://github.com/joaotavora/sly)[^slime] installed) do:
+In Emacs (with [sly](https://github.com/joaotavora/sly)[^5] installed) do:
 
 ```text
 M-x sly
@@ -115,8 +115,8 @@ Now in the repl do:
 (asteroids:run)
 ```
 
-[^slime] could also use [slime](https://github.com/slime/slime) instead of sly
+[^3] could also use [slime](https://github.com/slime/slime) instead of sly
 
-[^end] in the end we can delete the raygui *c:\home\bin\raygui\src*
+[^4] in the end we can delete the raygui *c:\home\bin\raygui\src*
 
-[^tests] to test, in the lisp repl we can do *(ql:quickload :claylib/examples)* and after *(claylib/examples/basic-window:main)*
+[^5] to test, in the lisp repl we can do *(ql:quickload :claylib/examples)* and after *(claylib/examples/basic-window:main)*
