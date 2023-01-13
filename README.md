@@ -115,8 +115,8 @@ Now in the repl do:
 (asteroids:run)
 ```
 
-[^3] could also use [slime](https://github.com/slime/slime) instead of sly
+[^3]: could also use [slime](https://github.com/slime/slime) instead of sly
 
-[^4] in the end we can delete the raygui *c:\home\bin\raygui\src*
+[^4]: in the end we can delete the raygui *c:\home\bin\raygui\src*
 
-[^5] to test, in the lisp repl we can do *(ql:quickload :claylib/examples)* and after *(claylib/examples/basic-window:main)*
+[^5]: to test, in the lisp repl we can do *(ql:quickload :claylib/examples)* and after *(claylib/examples/basic-window:main)*
