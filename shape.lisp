@@ -14,9 +14,6 @@
   life-timer)
 
 
-(define-constructor shape)
-
-
 (defmethod draw ((this shape))
   (with-slots (location orientation thickness color points) this
     (let ((start nil))
