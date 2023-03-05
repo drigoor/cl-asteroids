@@ -12,6 +12,63 @@ Common Lisp Asteroids Clone
 
 ![screenrec000.gif](screenrec000.gif)
 
+
+---
+
+
+# Installing and running (in *gnu/Linux Manjaro*)
+
+* install development tools
+
+```bash
+sudo pacman -S base-devel
+```
+
+* install [raylib](https://www.raylib.com/)
+
+```bash
+sudo pacman -S raylib
+```
+
+* install [emacs](https://www.gnu.org/software/emacs/)
+
+```bash
+sudo pacman -S emacs
+```
+
+* install [sbcl](http://www.sbcl.org)
+
+```bash
+sudo pacman -S sbcl
+```
+
+* install [quicklisp](https://www.quicklisp.org/beta/)
+
+```text
+follow the instructions in the page
+```
+
+* in *quicklisp local-projects* directory clone the following repos:
+  * [cl-raylib](https://github.com/longlene/cl-raylib)
+  * [game-spell](https://github.com/drigoor/cl-game-spell)
+  * [cl-asteroids](https://github.com/drigoor/cl-asteroids)
+
+In Emacs (with [sly](https://github.com/joaotavora/sly) installed) do:
+
+```text
+M-x sly
+```
+
+Now in the repl do:
+
+```cl
+(ql:quickload :cl-asteroids)
+(asteroids:run)
+```
+
+---
+
+
 # Installing and running (in *Windows*)
 
 ## in *PowerShell*
