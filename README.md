@@ -69,7 +69,11 @@ Now in the repl do:
 ---
 
 
-# Installing and running (in *Windows*)
+# Installing and running (in *Windows with msys2*)
+
+### notes
+1. I no longer suggest using msys2 from scoop, because when an update is done with scoop, the whole msys2 is reinstalled, losing the installed applications inside msys2.
+2. For now I also no longer suggest using claylib for raylib, i went back to cl-raylib because it was also update to raylib version 4.2 (see [raylib releases](https://github.com/raysan5/raylib/releases))
 
 ## in *PowerShell*
 
@@ -145,7 +149,7 @@ follow the instructions in the page
 mklink /J c:\home\quicklisp\local-projects\cl-asteroids c:\home\projects\lisp\cl-asteroids
 ```
 
-* install [claylib](https://github.com/defun-games/claylib)
+* install [claylib](https://github.com/defun-games/claylib) (also check their blog entry [Creating a Lisp Game in 2022](https://defungames.com/2022/11/creating-a-lisp-game-in-2022/))
 
 ```text
 just git clone the claylib directly to c:\home\quicklisp\local-projects
